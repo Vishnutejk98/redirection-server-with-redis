@@ -1,0 +1,12 @@
+composer create-project --prefer-dist laravel/lumen Redirection-open-server
+composer require flipbox/lumen-generator
+app.php => add => $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+generate key  => php artisan key:generate
+php artisan make:controller Authentication
+composer create-project --prefer-dist laravel/lumen lumen-app
+
+app.php
+=>
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
