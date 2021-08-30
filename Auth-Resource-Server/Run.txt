@@ -1,0 +1,26 @@
+Auth Server: php -S localhost:8001 -t .\public 
+Resource Server: php -S localhost:8000 -t .\public 
+
+
+API details implemented sir 
+ 
+API : http://localhost:8000/api/login 
+Requiered Parmeter : email and password 
+
+ 
+
+API : http://localhost:8000/api/logout
+Requiered Authorization : Bearer token : Access Token 
+
+ 
+
+API : http://localhost:8000/api/refreshToken 
+Requiered Parmeter : refersh_toke 
+
+ 
+
+API's with Authentication with bearer token 
+GET : http://localhost:8000/api/posts - list all the post 
+POST : http://localhost:8000/api/posts - create the post (title and body - requiered parameters)
+PUT : http://localhost:8000/api/posts/id - update (title and body - requiered parameters)
+DELETE : http://localhost:8000/api/posts/id - delete 

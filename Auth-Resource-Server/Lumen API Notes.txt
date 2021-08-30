@@ -1,0 +1,125 @@
+1. Create project 
+cmd : composer create-project --prefer-dist laravel/lumen API
+
+2. Install needed packages for development purpose 
+cmd : composer require flipbox/lumen-generator
+Register to the application add :$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+To : API\bootstrap\app.php --> Register Service Providers
+
+3. Creat Application Key
+cmd :  php artisan key:generate
+
+4. Create Modal Factory for CRUD operation 
+cmd : php artisan make:model Post -fmc
+
+Functions:
+Add columns to the created table : in migration folder 
+Once the database changes are done do the migration 
+cmd : php artisan migrate
+
+Make the factory changes,
+use tinker for the commands to generate the dummy data
+
+php artisan tinker 
+App\Models\Post::factory()->count(10)->create()
+
+
+Run the project: 
+php -S localhost:5000 -t .\public 
+
+
+
+Authentication 
+- create a users table 
+php artisan make:migration create_users_table --create=users
+- create controller 
+php artisan make:controller AuthController 
+
+
+Passpost Authentication
+composer require dusterio/lumen-passport
+
+
+Follow the installation porcess: 
+
+url : /v1/oauth/token
+
+client_secret : CpijNJbIIKlIRmyTCj1AcliaKYBrWElvJ7NAOEmK
+grant_type : password
+client_id : 2 
+username: mleuschke@example.org
+password : 123456
+
+
+install guzzle
+composer require guzzlehttp/guzzle
+
+
+
+
+Lumen Rough Notes
+
+It a microframework that is build on laravel framework.
+It would remove unwanted components that would be coming with larvel framwork. 
+
+In the project we would be developing 2 microservices called 
+1. Book service 
+2. Author service
+
+Architecture
+Extenral Service -> API GateWay -> OAuth2 -> BackendService 
+
+Requirment : Php >= 7 & Composer
+
+
+Create Porject:
+composer create-project laravel/lumen LumenAuthorsApi 
+-------- -------------- ------------ ProjectName
+
+Run the project: 
+php -S localhost:5000 -t .\public 
+
+Initially you need to enable few of the components : LumenAuthorsApi\bootstrap\app.php
+Such as 
+
+: Facades 
+In a Laravel application, a facade is a class that provides access to an object 
+from the container. The machinery that makes this work is in the Facade class. 
+Laravel's facades, and any custom facades you create, will extend the base
+
+:Eloquent 
+Laravel includes Eloquent, an object-relational mapper (ORM) that 
+makes it enjoyable to interact with your database.
+
+Commadns available 
+php artisan
+
+Create a table for the author as of the project
+php artisan make:migration CreateAuthorsTable --create=authors
+php artisan:migrate
+
+Models - used to create map with the mysql table (ORM)
+LumenAuthorsApi\app\Models\Author.php
+Created a model 
+
+$fillable = column name 
+$hidden = coulmn which are hidden and not avalible for json 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
