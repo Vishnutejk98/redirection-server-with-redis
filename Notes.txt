@@ -1,0 +1,5 @@
+Resource Server : php -S localhost:8000 -t .\public 
+Auth Server : php -S localhost:8001 -t .\public 
+Redirection and Cache Server : php -S localhost:8003 -t .\public 
+
+Start Redis Server and add the appropriate Server Configuration

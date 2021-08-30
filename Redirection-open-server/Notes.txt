@@ -10,3 +10,6 @@ app.php
 $app->register(Laravel\Passport\PassportServiceProvider::class);
 $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
+for redis 
+composer require predis/predis
+

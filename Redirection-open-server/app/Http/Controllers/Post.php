@@ -5,23 +5,31 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Http\Request;
+use Predis;
 
 class Post extends Controller
 {   
     public function index(Request $request)
     {
         $token = $this->getBearerToken();
-
-
+        $posts = [];
+        $redis = new Predis\Client('tcp://127.0.0.1:6379');
+        $cachedvalue = $redis->get('posts');
+        
         $client = new Client();
-
+        if($cachedvalue){
+            return json_decode($cachedvalue);
+        }
         try {
-            return $client->get(config('service.endpoint.getpost_endpoint'), [
+            $response = $client->get(config('service.endpoint.getpost_endpoint'), [
                 'headers' => 
                 [
                     'Authorization' => "Bearer {$token}"
                 ]
             ]);
+            $posts = json_decode($response->getBody());
+            $redis->set('posts',json_encode($posts));
+            return $response;
         } catch (BadResponseException $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
